@@ -150,16 +150,16 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer('Checking for Movie in database...')
-    k = await manual_filters(bot, query.message, text=movie)
-    if k == False:
+    kill = await manual_filters(bot, query.message, text=movie)
+    if kill == False:
         files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
         if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
+            kill = (movie, files, offset, total_results)
+            await auto_filter(bot, query, kill)
         else:
-            k = await query.message.edit("<b><i>Movie Not available Reason\n\n1)O.T.T Or DVD Not Released\n\n2)Type Name With Year\n\n3)Movie Is Not Available in the database Report to Admins\n\nReport to Admin By 👇\n@admins</i></b>")
+            kill = await query.message.edit("<b><i>Movie Not available Reason\n\n1)O.T.T Or DVD Not Released\n\n2)Type Name With Year\n\n3)Movie Is Not Available in the database Report to Admins\n\nReport to Admin By 👇\n@admins</i></b>")
             await asyncio.sleep(20)
-            await k.delete()
+            await kill.delete()
 
 
 @Client.on_callback_query()
@@ -766,7 +766,7 @@ async def auto_filter(client, msg, spoll=False):
         fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(600)
     await fmsg.delete()
-    await message.delete()
+    await msg.delete()
     
     if spoll:
         await msg.message.delete()
@@ -823,13 +823,9 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    zz = await msg.reply('<b><i>Searching for you result in imdb Wait...🧐<i/></b>')
-    await asyncio.sleep(1)
-    zz1 = await zz.edit("<b><i>I couldn't find anything related to that Did you mean any one of these?\n\nനിങ്ങൾ ഉദ്ദേശിച്ച മൂവി താഴെ കാണുന്ന വല്ലോം ആണ് എങ്കിൽ.അതിൽ ക്ലിക്ക് ചെയ്യുക</i></b>",
+    zz1 = await msg.reply("<b><i>I couldn't find anything related to that Did you mean any one of these?\n\nനിങ്ങൾ ഉദ്ദേശിച്ച മൂവി താഴെ കാണുന്ന വല്ലോം ആണ് എങ്കിൽ.അതിൽ ക്ലിക്ക് ചെയ്യുക</i></b>",
                     reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(13)
-    
-    await asyncio.sleep(8)
     await zz1.delete()
     await msg.delete()
     
