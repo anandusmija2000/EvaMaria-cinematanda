@@ -827,7 +827,7 @@ async def advantage_spell_chok(msg):
                     reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(13)
     await zz1.delete()
-    await msg.delete()
+    await message.delete()
     
 
 async def manual_filters(client, message, text=False):
