@@ -764,8 +764,6 @@ async def auto_filter(client, msg, spoll=False):
             fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     else:
         fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-    print("printed")
-    print(msg)
     await asyncio.sleep(600)
     await fmsg.delete()
     await msg.delete()
