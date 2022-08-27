@@ -881,7 +881,6 @@ async def manual_filters(client, message, text=False):
                         
                     await asyncio.sleep(120)
                     await fmsg.delete()
-                    await msg.delete()
                     
                 except Exception as e:
                     logger.exception(e)
