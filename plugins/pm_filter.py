@@ -767,7 +767,7 @@ async def auto_filter(client, msg, spoll=False):
     
     await asyncio.sleep(120)
     await fmsg.delete()
-    await message.delete()
+    await msg.delete()
 
     if spoll:
         await msg.message.delete()
@@ -815,7 +815,6 @@ async def advantage_spell_chok(msg):
         k = await msg.reply(" I couldn't find anything related to that. Check your spelling")
         await asyncio.sleep(8)
         await k.delete()
-        await msg.delete()
         return
     SPELL_CHECK[msg.message_id] = movielist
     btn = [[
